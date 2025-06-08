@@ -1,0 +1,23 @@
+Milestone Three: Algorithms and Data Structure Enhancement Narrative
+Artifact Description
+The artifact I selected for enhancement is a ContactService class implemented in Java. It was originally created in a previous programming course as part of a contact management application. The artifact provides basic CRUD (Create, Read, Update, Delete) functionality for managing contact information using a HashMap to store contacts by ID.
+Why I Selected This Artifact
+I chose this artifact because it represents foundational knowledge in data structures and object-oriented programming, and I saw potential to enhance it using algorithmic principles. Specifically, it offered an opportunity to apply a well-known algorithmic concept—undo/redo functionality using a stack data structure—which is a common requirement in real-world applications like editors, forms, and state-driven systems.
+The enhancement demonstrates my ability to reason through a logic problem and implement a data-structure-based solution to address it. I wanted to showcase that I can not only build working software but also improve its usability and robustness through algorithmic thinking.
+Enhancement Summary
+To improve the artifact, I implemented undo and redo capabilities using two stacks. Before any operation that changes the state of the contact list—such as adding, updating, or deleting a contact—the current state is saved to the undoStack. If an undo is triggered, the current state is pushed onto a redoStack and the previous state is restored. This allows users to step back and forth through the changes they make, much like in professional applications.
+A deep copy of the contacts map is stored at each step to ensure state integrity, and I also added a copy constructor to the Contact class for accurate object duplication. The code maintains a clear separation of concerns and is easy to extend for future features.
+Skills Demonstrated
+This enhancement showcases the following core skills related to data structures and algorithms:
+•	Effective use of the stack data structure to maintain application state history
+•	Understanding of deep copying and object mutability
+•	Implementation of algorithmic logic to track and revert changes
+•	Designing systems that are more user-friendly and resilient
+It also demonstrates my ability to reason through practical design tradeoffs—such as how to store snapshots of complex data safely and efficiently.
+Alignment with Course Outcomes
+This enhancement aligns with the CS program outcome of:
+“Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices.”
+I originally planned in Module One to meet this outcome by applying a key data structure (stack) to a real-world problem (undo/redo). This enhancement directly reflects that plan and confirms my growing competency in applying algorithmic principles to improve software behavior.
+Reflection on the Process
+While implementing this enhancement, I deepened my understanding of state management and the importance of immutability in applications that support undo/redo features. One challenge I faced was implementing a reliable deep copy of the contacts map. Java’s default behavior copies references, not values, which would have caused state corruption when reverting. I resolved this by adding a copy constructor to the Contact class to ensure proper duplication.
+Through this process, I learned how critical it is to think through how data flows and how each decision affects the system’s long-term reliability. I also gained insight into writing more maintainable, modular code.
