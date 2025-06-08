@@ -24,4 +24,7 @@ Reflection on the Enhancement Process
 Throughout the enhancement, I learned a great deal about GUI development in Java, including layout management with GridPane, form event handling, and integrating service layers with user-facing components. This process helped me deepen my understanding of software architecture by enforcing clear boundaries between the UI and logic layers.
 One of the main challenges I faced was ensuring data consistency between the form inputs and the underlying data model. For example, I had to prevent users from adding empty fields or reusing existing contact IDs — errors that would’ve been harder to catch without a structured UI. Additionally, I learned how to handle state transitions smoothly in the UI, such as populating fields when a user loads a contact to update.
 Overall, this enhancement helped me think more deeply about software from a user's perspective. It pushed me to develop not just code that works, but code that works well and is easy to use. This is the essence of good software engineering.
+Original Code
+https://github.com/katemoran02/CS-499/blob/main/Original%20Code%20One
+Enhanced Code
 
