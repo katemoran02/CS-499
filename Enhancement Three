@@ -1,0 +1,41 @@
+Milestone Four Narrative: Database Enhancement 
+
+Artifact Overview 
+
+The artifact I selected for the database category of my ePortfolio is a Python-based CRUD module built using the pymongo library to interact with a MongoDB database. This module was originally created during my coursework in CS 340: Client/Server Development. The application was designed to support an animal shelter’s recordkeeping by connecting to a hosted MongoDB instance and performing create, read, update, and delete operations on animal data. The code was built using Python and designed with a clear object-oriented structure, supporting data persistence and user interaction through function calls. 
+
+ 
+
+Justification for Inclusion 
+
+I selected this artifact because it demonstrates foundational database interaction skills that are essential for full-stack developers and data-oriented professionals. The original CRUD module allowed for the basic handling of records in a MongoDB database. To enhance the artifact for this milestone, I added functionality to generate a report using aggregation pipelines—a critical MongoDB feature. This new function, generate_breed_report(), summarizes how many animals exist per breed in the database and returns this data in descending order. 
+
+This enhancement showcases my ability to move beyond basic CRUD functionality and apply analytical querying skills that are valuable in real-world applications. I also refined the existing code by adding error handling, logging, and docstrings, improving both the usability and maintainability of the code. These additions demonstrate good software engineering practices in a database context. 
+
+ 
+
+Course Outcomes Achieved 
+
+Through this enhancement, I made significant progress toward the following Computer Science program outcomes: 
+
+Design and evaluate computing solutions by developing a function that solves a real data summarization problem using MongoDB’s aggregation framework. 
+
+Demonstrate the use of innovative tools and techniques in computing practices, such as applying MongoDB operators ($group, $sort) to produce actionable insights. 
+
+Develop a security mindset, reflected in the validation checks, error handling, and logging introduced during the enhancement process. 
+
+This enhancement aligns with the outcomes I initially targeted in Module One, and I do not currently plan to make changes to those outcome-coverage plans. 
+
+ 
+
+Reflection on the Enhancement Process 
+
+Enhancing this artifact taught me a great deal about MongoDB’s powerful querying capabilities and the practical value of database reporting features. I initially approached MongoDB with a CRUD-centric mindset, but through this enhancement, I gained a deeper appreciation for its full analytical potential. 
+
+One challenge I faced was getting familiar with MongoDB’s aggregation syntax and ensuring the results returned were efficient and readable. I also had to consider edge cases, such as animals with missing or null breed data, and write the report function in a way that could handle inconsistent entries. Testing was another critical step; I had to work with mock data to ensure the report generated accurate counts. 
+
+Another challenge was keeping the code general enough to be reused in other contexts—for example, generating reports by outcome type or intake condition—by abstracting query logic when possible. 
+
+Overall, this enhancement helped me grow in both technical skill and design maturity, reinforcing the importance of data integrity, scalability, and readability in software that interacts with a database. 
+
+ 
