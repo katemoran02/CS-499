@@ -1,0 +1,106 @@
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+ 
+public class ContactManagerApp extends Application {
+ 
+    private ContactService contactService = new ContactService();
+ 
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Contact Manager");
+ 
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10));
+        grid.setVgap(8);
+        grid.setHgap(10);
+ 
+        // Form fields
+        TextField idField = new TextField();
+        idField.setPromptText("Contact ID");
+        TextField firstNameField = new TextField();
+        firstNameField.setPromptText("First Name");
+        TextField lastNameField = new TextField();
+        lastNameField.setPromptText("Last Name");
+        TextField phoneField = new TextField();
+        phoneField.setPromptText("Phone");
+        TextField addressField = new TextField();
+        addressField.setPromptText("Address");
+ 
+        Button addButton = new Button("Add Contact");
+        Button updateButton = new Button("Update Contact");
+        Button deleteButton = new Button("Delete Contact");
+        Button viewButton = new Button("View Contact");
+ 
+        Label outputLabel = new Label();
+ 
+        // Layout the form
+        grid.add(new Label("ID:"), 0, 0); grid.add(idField, 1, 0);
+        grid.add(new Label("First Name:"), 0, 1); grid.add(firstNameField, 1, 1);
+        grid.add(new Label("Last Name:"), 0, 2); grid.add(lastNameField, 1, 2);
+        grid.add(new Label("Phone:"), 0, 3); grid.add(phoneField, 1, 3);
+        grid.add(new Label("Address:"), 0, 4); grid.add(addressField, 1, 4);
+        grid.add(addButton, 0, 5);
+        grid.add(updateButton, 1, 5);
+        grid.add(deleteButton, 0, 6);
+        grid.add(viewButton, 1, 6);
+        grid.add(outputLabel, 0, 7, 2, 1);
+ 
+        // Event handling
+        addButton.setOnAction(e -> {
+            try {
+                Contact contact = new Contact(
+                    idField.getText(),
+                    firstNameField.getText(),
+                    lastNameField.getText(),
+                    phoneField.getText(),
+                    addressField.getText()
+                );
+                contactService.addContact(contact);
+                outputLabel.setText("Contact added.");
+            } catch (Exception ex) {
+                outputLabel.setText("Error: " + ex.getMessage());
+            }
+        });
+ 
+        updateButton.setOnAction(e -> {
+            contactService.updateContact(
+                idField.getText(),
+                firstNameField.getText(),
+                lastNameField.getText(),
+                phoneField.getText(),
+                addressField.getText()
+            );
+            outputLabel.setText("Contact updated.");
+        });
+ 
+        deleteButton.setOnAction(e -> {
+            contactService.deleteContact(idField.getText());
+            outputLabel.setText("Contact deleted.");
+        });
+ 
+        viewButton.setOnAction(e -> {
+            Contact c = contactService.getContact(idField.getText());
+            if (c != null) {
+                firstNameField.setText(c.getFirstName());
+                lastNameField.setText(c.getLastName());
+                phoneField.setText(c.getPhone());
+                addressField.setText(c.getAddress());
+                outputLabel.setText("Contact found.");
+            } else {
+                outputLabel.setText("Contact not found.");
+            }
+        });
+ 
+        primaryStage.setScene(new Scene(grid, 400, 400));
+        primaryStage.show();
+    }
+ 
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
