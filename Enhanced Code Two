@@ -1,0 +1,71 @@
+import java.util.*;
+ 
+public class ContactService {
+    private Map<String, Contact> contacts = new HashMap<>();
+    private Stack<Map<String, Contact>> undoStack = new Stack<>();
+    private Stack<Map<String, Contact>> redoStack = new Stack<>();
+ 
+    public void addContact(Contact contact) {
+        if (contact == null || contact.getContactId() == null) {
+            throw new IllegalArgumentException("Contact or Contact ID cannot be null.");
+        }
+        if (contacts.containsKey(contact.getContactId())) {
+            throw new IllegalArgumentException("Contact ID already exists.");
+        }
+ 
+        saveStateForUndo();
+        redoStack.clear(); // Clear redo stack on new action
+        contacts.put(contact.getContactId(), contact);
+    }
+ 
+    public void deleteContact(String contactId) {
+        if (!contacts.containsKey(contactId)) return;
+ 
+        saveStateForUndo();
+        redoStack.clear();
+        contacts.remove(contactId);
+    }
+ 
+    public void updateContact(String contactId, String firstName, String lastName, String phone, String address) {
+        Contact contact = contacts.get(contactId);
+        if (contact != null) {
+            saveStateForUndo();
+            redoStack.clear();
+            if (firstName != null) contact.setFirstName(firstName);
+            if (lastName != null) contact.setLastName(lastName);
+            if (phone != null) contact.setPhone(phone);
+            if (address != null) contact.setAddress(address);
+        }
+    }
+ 
+    public Contact getContact(String contactId) {
+        return contacts.get(contactId);
+    }
+ 
+    public void undo() {
+        if (!undoStack.isEmpty()) {
+            redoStack.push(cloneContacts());
+            contacts = undoStack.pop();
+        }
+    }
+ 
+    public void redo() {
+        if (!redoStack.isEmpty()) {
+            undoStack.push(cloneContacts());
+            contacts = redoStack.pop();
+        }
+    }
+ 
+    private void saveStateForUndo() {
+        undoStack.push(cloneContacts());
+    }
+ 
+    private Map<String, Contact> cloneContacts() {
+        Map<String, Contact> cloned = new HashMap<>();
+        for (Map.Entry<String, Contact> entry : contacts.entrySet()) {
+            cloned.put(entry.getKey(), new Contact(entry.getValue())); // Copy constructor
+        }
+        return cloned;
+    }
+}
+
