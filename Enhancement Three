@@ -20,7 +20,7 @@ One challenge I faced was crafting aggregation pipelines that returned meaningfu
 Another challenge was implementing visualizations in a way that felt polished and professional. I had to experiment with different chart types, sort orders, and layouts to ensure the charts were readable and useful. Creating a method that saved charts to disk also made the module more adaptable for reports or presentations.
 Figures
 •	Figure 1: Top 10 animal breeds chart 
- 
+ ![Breed Chart](breed_chart.png)
 •	Figure 2: Animal outcomes distribution chart 
  
 •	Figure 3: Animal intake condition chart 
