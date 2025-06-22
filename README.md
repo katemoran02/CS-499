@@ -77,15 +77,18 @@ This enhancement deepened my appreciation for immutability and state control. I 
 
 ### 🔍 Artifact Overview
 
-The original artifact is a Python module built with `pymongo` to manage animal records in a MongoDB database. It supported CRUD operations and was used in CS 340: Client/Server Development.
+The artifact I selected for the database category of my ePortfolio is a Python-based CRUD module built using the pymongo library to interact with a MongoDB database. This module was originally created during my coursework in CS 340: Client/Server Development. It was designed to support an animal shelter’s recordkeeping by connecting to a hosted MongoDB instance and performing create, read, update, and delete operations on animal data. The original implementation provided a functional baseline, but lacked depth in reporting and user feedback mechanisms.
 
 ### ✅ Justification for Inclusion
 
-To reflect more advanced database skills, I added an **aggregation pipeline** function: `generate_breed_report()`, which summarizes the number of animals by breed. I also implemented:
+I selected this artifact because it demonstrates foundational database interaction skills that are essential for full-stack developers and data-oriented professionals. The original module showcased basic CRUD functionality, and for this milestone, I significantly enhanced it by introducing report generation capabilities using MongoDB’s aggregation framework.
+I added a new method, generate_reports(), which creates three types of summaries: one by breed, one by outcome type, and one by intake condition. These reports answer common business questions an animal shelter might face, such as: "What are our most common breeds?", "What is the most frequent outcome for animals?", and "What condition are most animals in upon arrival?" These types of insights can guide decisions about resource allocation and operational focus.
+To visually communicate these findings, I used the matplotlib library to generate horizontal bar charts for each report. These visualizations include:
+•	Breed Chart: Highlights the top 10 most common breeds in the database.
+•	Outcome Chart: Shows the distribution of animal outcomes, such as adoption or transfer.
+•	Intake Chart: Illustrates the various conditions animals are in when they enter the shelter.
+These enhancements go beyond simple querying and showcase analytical thinking, data summarization, and visual storytelling, which are critical in modern computing roles.
 
-- Logging and error handling
-- Data validation
-- Function documentation (docstrings)
 
 ### 🧠 Skills Demonstrated
 
@@ -95,16 +98,22 @@ To reflect more advanced database skills, I added an **aggregation pipeline** fu
 
 ### 🎯 Course Outcomes Addressed
 
-- Designed solutions using real-world database operations.
-- Applied advanced MongoDB techniques for data analytics.
-- Adopted a security-focused and maintainable coding style.
+Through this enhancement, I made significant progress toward the following Computer Science program outcomes:
+•	Design and evaluate computing solutions: I implemented a function that solves real-world data summarization problems using MongoDB’s aggregation framework.
+•	Demonstrate the use of innovative tools and techniques in computing practices: By applying MongoDB operators like $group and $sort, and integrating data visualization tools like matplotlib, I produced actionable insights from raw data.
+•	Develop a security mindset: This is reflected in the validation checks, error handling, and logging introduced to improve the robustness and maintainability of the module.
+
 
 ### 🔁 Reflection
 
-I gained a stronger understanding of aggregation syntax and its analytical potential. I faced challenges with edge cases (e.g., missing breed data) and learned to abstract logic for reuse.
+Before this enhancement, I had a very CRUD-centric view of MongoDB. However, learning to use aggregation pipelines shifted my understanding of what the database is capable of. I realized that real-world software often needs to support operational and strategic decision-making, not just store and retrieve data.
+One challenge I faced was crafting aggregation pipelines that returned meaningful and efficient results, especially considering edge cases like missing or null values. For example, some animals in the database did not have a breed listed, so I had to account for these records gracefully without skewing the data.
+Another challenge was implementing visualizations in a way that felt polished and professional. I had to experiment with different chart types, sort orders, and layouts to ensure the charts were readable and useful. Creating a method that saved charts to disk also made the module more adaptable for reports or presentations.
+
 
 - [🗂️ Original Code](https://github.com/katemoran02/CS-499/blob/main/Original%20Code%20Three)
 - [✨ Enhanced Code](https://github.com/katemoran02/CS-499/blob/main/Enhanced%20Code%20Three)
+
 
 ---
 
