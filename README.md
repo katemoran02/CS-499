@@ -67,9 +67,7 @@ It was ideal for algorithmic enhancement — specifically, I added **undo/redo f
 ### 🔁 Reflection
 
 This enhancement deepened my appreciation for immutability and state control. I overcame challenges related to deep-copy logic and learned how to create safer, more reliable systems.
-![Breed Chart](breed_chart.png)
-![Outcome Chart](outcome_chart.png)
-![Intake Chart](intake_chart.png)
+
 
 - [🗂️ Original Code](https://github.com/katemoran02/CS-499/blob/main/Original%20Code%20Two)
 - [✨ Enhanced Code](https://github.com/katemoran02/CS-499/blob/main/Enhanced%20Code%20Two)
@@ -113,6 +111,9 @@ Before this enhancement, I had a very CRUD-centric view of MongoDB. However, lea
 One challenge I faced was crafting aggregation pipelines that returned meaningful and efficient results, especially considering edge cases like missing or null values. For example, some animals in the database did not have a breed listed, so I had to account for these records gracefully without skewing the data.
 Another challenge was implementing visualizations in a way that felt polished and professional. I had to experiment with different chart types, sort orders, and layouts to ensure the charts were readable and useful. Creating a method that saved charts to disk also made the module more adaptable for reports or presentations.
 
+![Breed Chart](breed_chart.png)
+![Outcome Chart](outcome_chart.png)
+![Intake Chart](intake_chart.png)
 
 - [🗂️ Original Code](https://github.com/katemoran02/CS-499/blob/main/Original%20Code%20Three)
 - [✨ Enhanced Code](https://github.com/katemoran02/CS-499/blob/main/Enhanced%20Code%20Three)
