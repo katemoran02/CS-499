@@ -1,41 +1,28 @@
-Milestone Four Narrative: Database Enhancement 
-
-Artifact Overview 
-
-The artifact I selected for the database category of my ePortfolio is a Python-based CRUD module built using the pymongo library to interact with a MongoDB database. This module was originally created during my coursework in CS 340: Client/Server Development. The application was designed to support an animal shelter’s recordkeeping by connecting to a hosted MongoDB instance and performing create, read, update, and delete operations on animal data. The code was built using Python and designed with a clear object-oriented structure, supporting data persistence and user interaction through function calls. 
-
+Milestone Four Narrative: Database Enhancement
+Artifact Overview
+The artifact I selected for the database category of my ePortfolio is a Python-based CRUD module built using the pymongo library to interact with a MongoDB database. This module was originally created during my coursework in CS 340: Client/Server Development. It was designed to support an animal shelter’s recordkeeping by connecting to a hosted MongoDB instance and performing create, read, update, and delete operations on animal data. The original implementation provided a functional baseline, but lacked depth in reporting and user feedback mechanisms.
+Justification for Inclusion
+I selected this artifact because it demonstrates foundational database interaction skills that are essential for full-stack developers and data-oriented professionals. The original module showcased basic CRUD functionality, and for this milestone, I significantly enhanced it by introducing report generation capabilities using MongoDB’s aggregation framework.
+I added a new method, generate_reports(), which creates three types of summaries: one by breed, one by outcome type, and one by intake condition. These reports answer common business questions an animal shelter might face, such as: "What are our most common breeds?", "What is the most frequent outcome for animals?", and "What condition are most animals in upon arrival?" These types of insights can guide decisions about resource allocation and operational focus.
+To visually communicate these findings, I used the matplotlib library to generate horizontal bar charts for each report. These visualizations include:
+•	Breed Chart: Highlights the top 10 most common breeds in the database.
+•	Outcome Chart: Shows the distribution of animal outcomes, such as adoption or transfer.
+•	Intake Chart: Illustrates the various conditions animals are in when they enter the shelter.
+These enhancements go beyond simple querying and showcase analytical thinking, data summarization, and visual storytelling, which are critical in modern computing roles.
+Course Outcomes Achieved
+Through this enhancement, I made significant progress toward the following Computer Science program outcomes:
+•	Design and evaluate computing solutions: I implemented a function that solves real-world data summarization problems using MongoDB’s aggregation framework.
+•	Demonstrate the use of innovative tools and techniques in computing practices: By applying MongoDB operators like $group and $sort, and integrating data visualization tools like matplotlib, I produced actionable insights from raw data.
+•	Develop a security mindset: This is reflected in the validation checks, error handling, and logging introduced to improve the robustness and maintainability of the module.
+Reflection on the Enhancement Process
+Before this enhancement, I had a very CRUD-centric view of MongoDB. However, learning to use aggregation pipelines shifted my understanding of what the database is capable of. I realized that real-world software often needs to support operational and strategic decision-making, not just store and retrieve data.
+One challenge I faced was crafting aggregation pipelines that returned meaningful and efficient results, especially considering edge cases like missing or null values. For example, some animals in the database did not have a breed listed, so I had to account for these records gracefully without skewing the data.
+Another challenge was implementing visualizations in a way that felt polished and professional. I had to experiment with different chart types, sort orders, and layouts to ensure the charts were readable and useful. Creating a method that saved charts to disk also made the module more adaptable for reports or presentations.
+Figures
+•	Figure 1: Top 10 animal breeds chart 
  
-
-Justification for Inclusion 
-
-I selected this artifact because it demonstrates foundational database interaction skills that are essential for full-stack developers and data-oriented professionals. The original CRUD module allowed for the basic handling of records in a MongoDB database. To enhance the artifact for this milestone, I added functionality to generate a report using aggregation pipelines—a critical MongoDB feature. This new function, generate_breed_report(), summarizes how many animals exist per breed in the database and returns this data in descending order. 
-
-This enhancement showcases my ability to move beyond basic CRUD functionality and apply analytical querying skills that are valuable in real-world applications. I also refined the existing code by adding error handling, logging, and docstrings, improving both the usability and maintainability of the code. These additions demonstrate good software engineering practices in a database context. 
-
+•	Figure 2: Animal outcomes distribution chart 
  
-
-Course Outcomes Achieved 
-
-Through this enhancement, I made significant progress toward the following Computer Science program outcomes: 
-
-Design and evaluate computing solutions by developing a function that solves a real data summarization problem using MongoDB’s aggregation framework. 
-
-Demonstrate the use of innovative tools and techniques in computing practices, such as applying MongoDB operators ($group, $sort) to produce actionable insights. 
-
-Develop a security mindset, reflected in the validation checks, error handling, and logging introduced during the enhancement process. 
-
-This enhancement aligns with the outcomes I initially targeted in Module One, and I do not currently plan to make changes to those outcome-coverage plans. 
-
+•	Figure 3: Animal intake condition chart 
  
-
-Reflection on the Enhancement Process 
-
-Enhancing this artifact taught me a great deal about MongoDB’s powerful querying capabilities and the practical value of database reporting features. I initially approached MongoDB with a CRUD-centric mindset, but through this enhancement, I gained a deeper appreciation for its full analytical potential. 
-
-One challenge I faced was getting familiar with MongoDB’s aggregation syntax and ensuring the results returned were efficient and readable. I also had to consider edge cases, such as animals with missing or null breed data, and write the report function in a way that could handle inconsistent entries. Testing was another critical step; I had to work with mock data to ensure the report generated accurate counts. 
-
-Another challenge was keeping the code general enough to be reused in other contexts—for example, generating reports by outcome type or intake condition—by abstracting query logic when possible. 
-
-Overall, this enhancement helped me grow in both technical skill and design maturity, reinforcing the importance of data integrity, scalability, and readability in software that interacts with a database. 
-
- 
+These enhancements significantly improved the artifact’s value and brought it in line with what would be expected in a professional portfolio. Overall, I grew both in technical skill and in understanding the role of database reporting in supporting real-world business needs.
