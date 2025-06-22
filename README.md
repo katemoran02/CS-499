@@ -67,6 +67,9 @@ It was ideal for algorithmic enhancement — specifically, I added **undo/redo f
 ### 🔁 Reflection
 
 This enhancement deepened my appreciation for immutability and state control. I overcame challenges related to deep-copy logic and learned how to create safer, more reliable systems.
+![Breed Chart](breed_chart.png)
+![Outcome Chart](outcome_chart.png)
+![Intake Chart](intake_chart.png)
 
 - [🗂️ Original Code](https://github.com/katemoran02/CS-499/blob/main/Original%20Code%20Two)
 - [✨ Enhanced Code](https://github.com/katemoran02/CS-499/blob/main/Enhanced%20Code%20Two)
