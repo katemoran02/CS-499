@@ -1,51 +1,82 @@
-from pymongo import MongoClient import logging 
+from pymongo import MongoClient
+import logging
+import matplotlib.pyplot as plt
 
-class AnimalShelter: """ CRUD operations for Animal collection in MongoDB """ 
+class AnimalShelter:
+    """CRUD operations and report generation for Animal collection in MongoDB"""
 
-def __init__(self, username, password, host='nv-desktop-services.apporto.com', port=31580): 
-    """ Initialize the MongoClient with authentication """ 
-    try: 
-        self.client = MongoClient(f"mongodb://{username}:{password}@{host}:{port}") 
-        self.database = self.client['AAC']  # Use the AAC database 
-        self.collection = self.database['animals']  # Use the animals collection 
-    except Exception as e: 
-        raise Exception(f"Failed to connect to database: {e}") 
- 
-def create(self, data): 
-    """ Create a new document in the collection """ 
-    if not isinstance(data, dict): 
-        raise TypeError("Data should be a dictionary.") 
-    try: 
-        result = self.collection.insert_one(data) 
-        return result.inserted_id 
-    except Exception as e: 
-        logging.error(f"Insert failed: {e}") 
-        return None 
- 
-def read(self, query): 
-    """ Read documents based on a query """ 
-    if isinstance(query, dict): 
-        try: 
-            result = self.collection.find(query) 
-            return list(result)  # Return results as a list 
-        except Exception as e: 
-            print(f"An error occurred: {e}") 
-            return [] 
-    else: 
-        raise TypeError("Query should be a dictionary.") 
- 
-def generate_breed_report(self): 
-    """ 
-    Generate a report of how many animals exist per breed. 
-    Returns a dictionary with breed names as keys and counts as values. 
-    """ 
-    try: 
-        report = self.collection.aggregate([ 
-            {"$group": {"_id": "$breed", "count": {"$sum": 1}}}, 
-            {"$sort": {"count": -1}} 
-        ]) 
-        return list(report) 
-    except Exception as e: 
-        logging.error(f"Report generation failed: {e}") 
-        return [] 
- 
+    def __init__(self, username, password, host='nv-desktop-services.apporto.com', port=31580):
+        """Initialize the MongoClient with authentication"""
+        try:
+            self.client = MongoClient(f"mongodb://{username}:{password}@{host}:{port}")
+            self.database = self.client['AAC']
+            self.collection = self.database['animals']
+        except Exception as e:
+            raise Exception(f"Failed to connect to database: {e}")
+
+    def create(self, data):
+        """Create a new document in the collection"""
+        if not isinstance(data, dict):
+            raise TypeError("Data should be a dictionary.")
+        try:
+            result = self.collection.insert_one(data)
+            return result.inserted_id
+        except Exception as e:
+            logging.error(f"Insert failed: {e}")
+            return None
+
+    def read(self, query):
+        """Read documents based on a query"""
+        if not isinstance(query, dict):
+            raise TypeError("Query should be a dictionary.")
+        try:
+            return list(self.collection.find(query))
+        except Exception as e:
+            logging.error(f"Read failed: {e}")
+            return []
+
+    def generate_reports(self):
+        """Generate multiple reports from the animal collection"""
+        try:
+            breed_report = list(self.collection.aggregate([
+                {"$group": {"_id": "$breed", "count": {"$sum": 1}}},
+                {"$sort": {"count": -1}},
+                {"$limit": 10}
+            ]))
+
+            outcome_report = list(self.collection.aggregate([
+                {"$group": {"_id": "$outcome_type", "count": {"$sum": 1}}},
+                {"$sort": {"count": -1}}
+            ]))
+
+            intake_report = list(self.collection.aggregate([
+                {"$group": {"_id": "$intake_condition", "count": {"$sum": 1}}},
+                {"$sort": {"count": -1}}
+            ]))
+
+            return {
+                "breed_report": breed_report,
+                "outcome_type_report": outcome_report,
+                "intake_condition_report": intake_report
+            }
+
+        except Exception as e:
+            logging.error(f"Report generation failed: {e}")
+            return {}
+
+    def plot_report(self, report_data, title, filename):
+        """Create and save a horizontal bar chart from aggregation results"""
+        try:
+            labels = [item['_id'] if item['_id'] else 'Unknown' for item in report_data]
+            counts = [item['count'] for item in report_data]
+
+            plt.figure(figsize=(10, 6))
+            plt.barh(labels, counts, color='teal')
+            plt.xlabel('Count')
+            plt.title(title)
+            plt.gca().invert_yaxis()
+            plt.tight_layout()
+            plt.savefig(filename)
+            plt.close()
+        except Exception as e:
+            logging.error(f"Chart creation failed: {e}")
